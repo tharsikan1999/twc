@@ -1,13 +1,14 @@
 "use client";
 
-import logo from "../assets/img/Logo-white.png";
+import logo from "../../assets/img/Logo-white.png";
 import Image from "next/image";
-import contactIMG from "../assets/img/contacts portalw.png";
-import logoutIMG from "../assets/img/bx_log-out-circle.png";
-import Man from "../assets/img/man.png";
-import Girl from "../assets/img/girl.png";
+import contactIMG from "../../assets/img/contacts portal white.png";
+import logoutIMG from "../../assets/img/bx_log-out-circle.png";
+import Man from "../../assets/img/man.png";
+import Girl from "../../assets/img/girl.png";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
+import Link from "next/link";
 
 function Table() {
   const users = [
@@ -96,12 +97,14 @@ function Table() {
           <h1 className="text-[30px] md:text-[50px] my-10  font-bold text-white text-center lg:text-left">
             Contacts
           </h1>
-          <button
-            type="button"
-            className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white w-[170px] md:w-[255px]  h-[38px] md:h-[48px] rounded-full text-[14px] md:text-[25px] sm:text-[16px] font-normal"
-          >
-            add new contact
-          </button>
+          <Link href="/pages/form">
+            <button
+              type="button"
+              className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white w-[170px] md:w-[255px]  h-[38px] md:h-[48px] rounded-full text-[14px] md:text-[25px] sm:text-[16px] font-normal"
+            >
+              add new contact
+            </button>
+          </Link>
         </div>
 
         <div className="relative overflow-x-auto shadow-md   bg-white rounded-[30px]">
@@ -161,12 +164,14 @@ function Table() {
           </table>
         </div>
 
-        <div className=" flex space-x-3 items-center justify-center cursor-pointer mt-14 absolute left-[35%] sm:left-[40%] md:left-[45%] bottom-5 lg:justify-end lg:right-14 lg:bottom-14">
-          <Image src={logoutIMG} alt="logout IMG" />
-          <p className=" underline underline-offset-4 text-white font-normal text-[20px]">
-            logout
-          </p>
-        </div>
+        <Link href="/">
+          <div className=" flex space-x-3 items-center justify-center cursor-pointer mt-14 absolute left-[35%] sm:left-[40%] md:left-[45%] bottom-5 lg:justify-end lg:right-14 lg:bottom-14">
+            <Image src={logoutIMG} alt="logout IMG" />
+            <p className=" underline underline-offset-4 text-white font-normal text-[20px]">
+              logout
+            </p>
+          </div>
+        </Link>
       </div>
     </main>
   );

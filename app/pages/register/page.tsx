@@ -1,6 +1,7 @@
-import logo from "../assets/img/logo.png";
+import logo from "../../assets/img/logo.png";
 import Image from "next/image";
-import contactIMG from "../assets/img/contacts portal.png";
+import contactIMG from "../../assets/img/contacts portal.png";
+import Link from "next/link";
 
 function Register() {
   return (
@@ -35,18 +36,22 @@ function Register() {
           </form>
 
           <div className=" flex justify-start mt-10 ">
-            <button
-              type="button"
-              className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white w-[131px] md:w-[149px] sm:w-[90px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] sm:text-[16px] font-normal"
-            >
-              Register
-            </button>
+            <Link href="/pages/welcome">
+              <button
+                type="button"
+                className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white w-[131px] md:w-[149px] sm:w-[90px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] sm:text-[16px] font-normal"
+              >
+                Register
+              </button>
+            </Link>
           </div>
-          <div className="h-[40px]  text-white flex items-center  mt-10 lg:mt-20">
-            <p className="text-[15px] md:text-[25px] underline underline-offset-4 cursor-pointer">
-              &lt; Back to login
-            </p>
-          </div>
+          <Link href="/">
+            <div className="h-[40px]  text-white flex items-center  mt-10 lg:mt-20">
+              <p className="text-[15px] md:text-[25px] underline underline-offset-4 cursor-pointer">
+                &lt; Back to login
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
       <div className="w-full py-36 md:py-0 truncate flex justify-center relative items bg-back  sm:min-h-screen sm:px-5 lg:w-1/2 ">

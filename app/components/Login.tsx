@@ -1,6 +1,7 @@
 import logo from "../assets/img/logo.png";
 import Image from "next/image";
 import contactIMG from "../assets/img/contacts portal.png";
+import Link from "next/link";
 
 function Login() {
   return (
@@ -29,20 +30,24 @@ function Login() {
           </form>
 
           <div className=" flex justify-start mt-10 ">
-            <button
-              type="button"
-              className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white w-[131px] sm:w-[90px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] sm:text-[16px] font-normal"
-            >
-              login
-            </button>
-            <div className="h-[40px]  text-white ml-4 flex items-center">
-              <p className="text-[15px] md:text-[25px]">
-                or{" "}
-                <span className="underline underline-offset-4 cursor-pointer">
-                  Click here to Register
-                </span>{" "}
-              </p>
-            </div>
+            <Link href="/pages/welcome">
+              <button
+                type="button"
+                className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white w-[131px] sm:w-[90px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] sm:text-[16px] font-normal"
+              >
+                login
+              </button>
+            </Link>
+            <Link href="/pages/register">
+              <div className="h-[40px]  text-white ml-4 flex items-center">
+                <p className="text-[15px] md:text-[25px]">
+                  or{" "}
+                  <span className="underline underline-offset-4 cursor-pointer">
+                    Click here to Register
+                  </span>{" "}
+                </p>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

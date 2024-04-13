@@ -1,7 +1,8 @@
-import logo from "../assets/img/Logo-white.png";
+import logo from "../../assets/img/Logo-white.png";
 import Image from "next/image";
-import contactIMG from "../assets/img/contacts portal white.png";
-import logoutIMG from "../assets/img/bx_log-out-circle.png";
+import contactIMG from "../../assets/img/contacts portal white.png";
+import logoutIMG from "../../assets/img/bx_log-out-circle.png";
+import Link from "next/link";
 
 function Welcome() {
   return (
@@ -30,20 +31,24 @@ function Welcome() {
         </p>
         <form action="" className="w-full mt-32 lg:mt-20 px-6  lg:px-0 ">
           <div className=" flex justify-center mt-10 lg:justify-start lg:mt-20 ">
-            <button
-              type="button"
-              className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white px-7 md:w-[323px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] sm:text-[16px] font-normal"
-            >
-              add your first contact
-            </button>
+            <Link href="/pages/form">
+              <button
+                type="button"
+                className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white px-7 md:w-[323px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] sm:text-[16px] font-normal"
+              >
+                add your first contact
+              </button>
+            </Link>
           </div>
         </form>
-        <div className=" flex space-x-3 items-center justify-center cursor-pointer mt-14 absolute left-[35%] sm:left-[40%] md:left-[45%] bottom-14 lg:justify-end lg:right-14 lg:bottom-14">
-          <Image src={logoutIMG} alt="logout IMG" />
-          <p className=" underline underline-offset-4 text-white font-normal text-[20px]">
-            logout
-          </p>
-        </div>
+        <Link href="/">
+          <div className=" flex space-x-3 items-center justify-center cursor-pointer mt-14 absolute left-[35%] sm:left-[40%] md:left-[45%] bottom-14 lg:justify-end lg:right-14 lg:bottom-14">
+            <Image src={logoutIMG} alt="logout IMG" />
+            <p className=" underline underline-offset-4 text-white font-normal text-[20px]">
+              logout
+            </p>
+          </div>
+        </Link>
       </div>
     </main>
   );
