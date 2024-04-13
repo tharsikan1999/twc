@@ -1,15 +1,60 @@
+"use client";
+
 import logo from "../../assets/img/Logo-white.png";
 import Image from "next/image";
 import contactIMG from "../../assets/img/contacts portal white.png";
 import logoutIMG from "../../assets/img/bx_log-out-circle.png";
 import Link from "next/link";
+import axios from "axios";
+import { useState } from "react";
 
 function AddContact() {
+  // State variable to manage form data
+  const [contactData, setContactData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    gender: "",
+  });
+
+  // Handle input changes
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setContactData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleAddContact = async (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    e.preventDefault();
+    try {
+      // Make a POST request to the server with the form data
+      await axios.post("/api/add", contactData);
+      // Perform any additional actions after the request, e.g. clearing the form
+      setContactData({
+        name: "",
+        email: "",
+        phone: "",
+        gender: "",
+      });
+      // You can also navigate to another page or display a success message
+    } catch (error) {
+      console.error("Error adding contact:", error);
+      // Handle the error appropriately, e.g. display an error message
+    }
+  };
+
   return (
-    <main className=" bg-customGreen w-full min-h-screen flex flex-col lg:items-center lg:relative">
-      <div className=" my-5 lg:w-3/4 mt-[72px]">
-        <div className=" w-full flex flex-col items-center lg:items-start">
-          <div className="">
+    <main className="bg-customGreen w-full min-h-screen flex flex-col lg:items-center lg:relative">
+      <div className="my-5 lg:w-3/4 mt-[72px]">
+        <div className="w-full flex flex-col items-center lg:items-start">
+          <div>
             <Image
               src={logo}
               alt="logo"
@@ -25,76 +70,88 @@ function AddContact() {
         <h1 className="text-[40px] md:text-[50px] lg:mt-24 font-bold text-white text-center mt-5 lg:text-left">
           New Contact
         </h1>
-        <form action="" className="w-full mt-10 lg:mt-16 px-6  lg:px-0 ">
-          <div className="flex flex-col items-center lg:flex-row lg:space-x-10  lg:justify-between lg:w-3/4">
+        <form
+          onSubmit={handleAddContact}
+          className="w-full mt-10 lg:mt-16 px-6 lg:px-0"
+        >
+          <div className="flex flex-col items-center lg:flex-row lg:space-x-10 lg:justify-between lg:w-3/4">
             <input
               type="text"
-              className="bg-white rounded-3xl mb-10 focus:ring-blue-500 focus:border-blue-500 block w-full lg:text-[25px]  h-[55px] pl-[41px] dark:focus:ring-blue-500 dark:focus:border-blue-500  text-customGreen placeholder-customGreen sm:w-3/4  md:w-[477px]"
-              placeholder="full name"
+              name="name"
+              value={contactData.name}
+              onChange={handleInputChange}
+              className="bg-white rounded-3xl mb-10 focus:ring-blue-500 focus:border-blue-500 block w-full lg:text-[25px] h-[55px] pl-[41px] dark:focus:ring-blue-500 dark:focus:border-blue-500 text-customGreen placeholder-customGreen sm:w-3/4 md:w-[477px]"
+              placeholder="Full name"
               required
             />
             <input
               type="email"
-              className="bg-white rounded-3xl mb-10 focus:ring-blue-500 focus:border-blue-500 block  h-[55px] pl-[41px] lg:text-[25px] dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full   text-customGreen placeholder-customGreen sm:w-3/4   md:w-[477px]"
-              placeholder="e-mail"
+              name="email"
+              value={contactData.email}
+              onChange={handleInputChange}
+              className="bg-white rounded-3xl mb-10 focus:ring-blue-500 focus:border-blue-500 block h-[55px] pl-[41px] lg:text-[25px] dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full text-customGreen placeholder-customGreen sm:w-3/4 md:w-[477px]"
+              placeholder="Email"
               required
             />
           </div>
-          <div className=" flex flex-col items-center lg:flex-row lg:items-center lg:space-x-10 lg:w-3/4 lg:justify-between">
+          <div className="flex flex-col items-center lg:flex-row lg:space-x-10 lg:justify-between lg:w-3/4">
             <input
               type="text"
-              className="bg-white rounded-3xl mb-10 lg:mb-0 focus:ring-blue-500 focus:border-blue-500 block w-full lg:text-[25px]  h-[55px] pl-[41px] dark:focus:ring-blue-500 dark:focus:border-blue-500  text-customGreen placeholder-customGreen sm:w-3/4 md:w-[477px]"
-              placeholder="phone number"
+              name="phone"
+              value={contactData.phone}
+              onChange={handleInputChange}
+              className="bg-white rounded-3xl mb-10 focus:ring-blue-500 focus:border-blue-500 block w-full lg:text-[25px] h-[55px] pl-[41px] dark:focus:ring-blue-500 dark:focus:border-blue-500 text-customGreen placeholder-customGreen sm:w-3/4 md:w-[477px]"
+              placeholder="Phone number"
               required
             />
-            <div className=" flex justify-center lg:w-[477px] lg:justify-between lg:pl-2">
-              <p className=" text-[20px] lg:text-[25px] text-white font-normal">
-                gender
+            <div className="flex items-center space-x-3 lg:w-[477px] lg:justify-between lg:pl-2">
+              <p className="text-[20px] lg:text-[25px] text-white font-normal">
+                Gender
               </p>
               <div className="flex items-center space-x-3">
                 <input
-                  id="country-option-2"
+                  id="male"
                   type="radio"
-                  name="countries"
-                  value="Germany"
+                  name="gender"
+                  value="Male"
+                  checked={contactData.gender === "Male"}
+                  onChange={handleInputChange}
                   className="w-4 h-4 ml-10 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
                 />
-
-                <span className=" text-[20px] lg:text-[25px] text-white font-normal">
+                <span className="text-[20px] lg:text-[25px] text-white font-normal">
                   Male
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <input
-                  id="country-option-2"
+                  id="female"
                   type="radio"
-                  name="countries"
-                  value="Germany"
-                  className="w-4 h-4 ml-10  border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
+                  name="gender"
+                  value="Female"
+                  checked={contactData.gender === "Female"}
+                  onChange={handleInputChange}
+                  className="w-4 h-4 ml-10 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
                 />
-
-                <span className=" text-[20px] lg:text-[25px] text-white font-normal">
+                <span className="text-[20px] lg:text-[25px] text-white font-normal">
                   Female
                 </span>
               </div>
             </div>
           </div>
-          <div className=" flex justify-center mt-10 lg:justify-start lg:mt-20 ">
-            <Link href="/pages/dashboard">
-              <button
-                type="button"
-                className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white px-5 md:w-[323px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] sm:text-[16px] font-normal"
-              >
-                add your first contact
-              </button>
-            </Link>
+          <div className="flex justify-center mt-10 lg:justify-start lg:mt-20">
+            <button
+              type="submit"
+              className="text-white bg-customGreen border-2 focus:outline-none focus:ring-gray-300 border-white px-5 md:w-[323px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] sm:text-[16px] font-normal"
+            >
+              Add your first contact
+            </button>
           </div>
         </form>
         <Link href="/">
-          <div className=" flex space-x-3 items-center justify-center cursor-pointer mt-14 lg:absolute lg:right-14 lg:bottom-14">
-            <Image src={logoutIMG} alt="logout IMG" />
-            <p className=" underline underline-offset-4 text-white font-normal text-[20px]">
-              logout
+          <div className="flex space-x-3 items-center justify-center cursor-pointer mt-14 lg:absolute lg:right-14 lg:bottom-14">
+            <Image src={logoutIMG} alt="logout IMG" className="w-6 h-6" />
+            <p className="underline underline-offset-4 text-white font-normal text-[20px]">
+              Logout
             </p>
           </div>
         </Link>
