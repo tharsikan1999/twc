@@ -11,8 +11,13 @@ import { FaPen } from "react-icons/fa";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ConfirmationDeleteDialog from "../../components/ConfirmationDeleteDialog";
+import ConfirmationAddDialog from "../../components/ConfirmationAddDialog";
+import ConfirmationDelete from "../../components/ConfirmationDelete";
+import { useRouter } from "next/navigation";
 
 function Table() {
+  const router = useRouter();
   interface User {
     _id: string;
     name: string;
@@ -22,6 +27,11 @@ function Table() {
   }
 
   const [users, setUsers] = useState<User[]>([]);
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [saveDialogOpen, setSaveDialogOpen] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [selectedUserName, setSelectedUserName] = useState("");
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     fetchNotes();
@@ -38,21 +48,44 @@ function Table() {
     }
   };
 
-  const handleDelete = async (index: number) => {
-    const contactName = users[index].name;
+  const handleConfirm = async () => {
+    setSaveDialogOpen(false);
+    // Handle the deletion
+    try {
+      const userIdToDelete = users[index]._id;
+      // Send a DELETE request to the server
+      await axios.delete(`/api/delete/${userIdToDelete}`);
 
-    const shouldDelete = window.confirm(
-      `Do you want to delete this contact  ${contactName} ?`
-    );
-    if (shouldDelete) {
-      try {
-        await axios.delete(`/api/delete/${users[index]._id}`);
-        fetchNotes();
-      } catch (error) {
-        console.error("Error deleting note:", error);
-        window.alert("Failed to delete note");
-      }
+      // Refresh the users list after deletion
+      fetchNotes();
+
+      // Close the dialog
+      setDialogOpen(false);
+      setDeleteSuccess(true);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      alert("Failed to delete user. Please try again.");
     }
+  };
+
+  const handleCancel = () => {
+    // Handle cancellation logic
+    setDialogOpen(false);
+    setSaveDialogOpen(false);
+    setDeleteSuccess(false);
+  };
+
+  const handleDelete = (index: number) => {
+    // Open the confirmation dialog
+    setDialogOpen(true);
+    // Set the selected user name and index for deletion
+    const contactName = users[index].name;
+    setSelectedUserName(contactName);
+    setIndex(index);
+  };
+
+  const GoToHome = () => {
+    router.push("/");
   };
 
   return (
@@ -66,6 +99,7 @@ function Table() {
               height={24.03}
               width={72.94}
               className="cursor-pointer mb-3"
+              onClick={GoToHome}
             />
             <Image
               src={contactIMG}
@@ -139,6 +173,21 @@ function Table() {
                       className="cursor-pointer"
                       onClick={() => handleDelete(index)}
                     />
+                    <ConfirmationDeleteDialog
+                      isOpen={isDialogOpen}
+                      onConfirm={handleConfirm}
+                      onCancel={handleCancel}
+                      message={` Do you want to delete the contact ${selectedUserName}?`}
+                    />
+                    <ConfirmationDelete
+                      isOpen={deleteSuccess}
+                      onCancel={handleCancel}
+                    />
+                    {/* <ConfirmationAddDialog
+                      isOpen={SaveDialogOpen}
+                      onConfirm={handleConfirm}
+                      onCancel={handleCancel}
+                    /> */}
                   </td>
                 </tr>
               ))}
