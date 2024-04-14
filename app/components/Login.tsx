@@ -51,16 +51,16 @@ function Login() {
           </div>
         </div>
       </div>
-      <div className="w-full py-36 md:py-0 truncate flex justify-center relative items bg-back  sm:min-h-screen sm:px-5 lg:w-1/2 ">
-        {/*  <div
-          className="border-2 border-blue-600 h-screen w-52 absolute bg-customGreen"
+      <div className="w-full py-36 md:py-0 truncate flex justify-center relative items bg-back sm:min-h-screen sm:px-5 lg:w-1/2 ">
+        <div
+          className=" h-screen w-52 absolute hidden lg:block bg-customGreen"
           style={{
             borderRadius: "0 100% 100% 0",
-            left: "-110px",
+            left: "-100px",
           }}
         ></div>
- */}
-        <div className="w-full flex flex-col justify-center items-center">
+
+        <div className="w-full flex flex-col lg:pl-10 justify-center items-center">
           <div className=" ">
             <Image
               src={logo}

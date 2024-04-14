@@ -60,7 +60,9 @@ function Register() {
       }
     } catch (error) {
       console.error("Error registering user:", error);
-      setErrorMessage("Failed to register user. Please try again.");
+      setErrorMessage(
+        "Password must contain at least one uppercase letter, one lowercase letter, and one number."
+      );
     }
   };
 
@@ -140,8 +142,14 @@ function Register() {
 
       {/* Logo and contact images */}
       <div className="w-full py-36 md:py-0 truncate flex justify-center relative items bg-back sm:min-h-screen sm:px-5 lg:w-1/2">
-        {/* Logo and Contact Image */}
-        <div className="w-full flex flex-col justify-center items-center">
+        <div
+          className=" h-screen w-52 absolute hidden lg:block bg-customGreen"
+          style={{
+            borderRadius: "0 100% 100% 0",
+            left: "-100px",
+          }}
+        ></div>
+        <div className="w-full flex flex-col lg:pl-10 justify-center items-center">
           <div>
             <Image
               src={logo}

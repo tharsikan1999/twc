@@ -165,7 +165,7 @@ function Table() {
           <Link href="/pages/form">
             <button
               type="button"
-              className="text-white bg-customGreen border-2 focus:outline-none focus:ring-gray-300 border-white w-[170px] md:w-[255px] h-[38px] md:h/[48px] rounded-full text-[14px] md:text-[25px] sm:text-[16px] font-normal"
+              className="text-white leading-4 bg-customGreen border-2 focus:outline-none focus:ring-gray-300 border-white w-[170px] md:w-[255px] h-[38px] md:h/[48px] rounded-full text-[14px] md:text-[25px] sm:text-[16px] font-normal"
             >
               Add New Contact
             </button>
