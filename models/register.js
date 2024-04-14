@@ -1,53 +1,47 @@
-import mongoose, { Schema } from "mongoose";
-import bcrypt from "bcrypt";
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
-const userSchema = new Schema(
-  {
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      lowercase: true,
-      validate: {
-        validator: function (v) {
-          // Email format validation
-          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-        },
-        message: "Invalid email format",
+const userSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    // Validate email format
+    match: [/^\S+@\S+\.\S+$/, "Please enter a valid email address."],
+    // Convert email to lowercase
+    set: (value) => value.toLowerCase(),
+  },
+  password: {
+    type: String,
+    required: true,
+    // Minimum length of 8 characters for password
+    minLength: [8, "Password must be at least 8 characters long."],
+    // Add a custom validation function for password strength
+    validate: {
+      validator: function (value) {
+        // At least one uppercase letter, one lowercase letter, and one number
+        return /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(value);
       },
-    },
-    password: {
-      type: String,
-      required: true,
-      minlength: 6,
-      select: false, // Don't include password field when querying
+      message:
+        "Password must contain at least one uppercase letter, one lowercase letter, and one number.",
     },
   },
-  {
-    timestamps: true,
-  }
-);
+});
 
-// Pre-save hook to hash the password before saving the user
+// Hash password before saving
 userSchema.pre("save", async function (next) {
-  // Check if password is modified or new
   if (!this.isModified("password")) {
     return next();
   }
-
   try {
-    // Generate a salt and hash the password
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
     next();
   } catch (error) {
-    // Pass the error to the next middleware
-    console.error("Error hashing password:", error);
     next(error);
   }
 });
 
-const User = mongoose.models.register || mongoose.model("register", userSchema);
-
-export default User;
+const User = mongoose.models.User || mongoose.model("User", userSchema);
+module.exports = User;

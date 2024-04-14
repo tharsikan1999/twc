@@ -1,0 +1,63 @@
+db.contacts.insertMany([
+    {
+        "name": "Alice Smith",
+        "gender": "Female",
+        "email": "alice.smith@example.com",
+        "phone": "0774563211"
+    },
+    {
+        "name": "Bob Johnson",
+        "gender": "Male",
+        "email": "bob.johnson@example.com",
+        "phone": "0774563212"
+    },
+    {
+        "name": "Charlie Davis",
+        "gender": "Male",
+        "email": "charlie.davis@example.com",
+        "phone": "0774563213"
+    },
+    {
+        "name": "Dana Green",
+        "gender": "Female",
+        "email": "dana.green@example.com",
+        "phone": "0774563214"
+    },
+    {
+        "name": "Evan White",
+        "gender": "Male",
+        "email": "evan.white@example.com",
+        "phone": "0774563215"
+    },
+    {
+        "name": "Fiona Brown",
+        "gender": "Female",
+        "email": "fiona.brown@example.com",
+        "phone": "0774563216"
+    },
+    {
+        "name": "George Wilson",
+        "gender": "Male",
+        "email": "george.wilson@example.com",
+        "phone": "0774563217"
+    },
+    {
+        "name": "Hannah Clark",
+        "gender": "Female",
+        "email": "hannah.clark@example.com",
+        "phone": "0774563218"
+    },
+    {
+        "name": "Ian Taylor",
+        "gender": "Male",
+        "email": "ian.taylor@example.com",
+        "phone": "0774563219"
+    },
+    {
+        "name": "Julia Scott",
+        "gender": "Female",
+        "email": "julia.scott@example.com",
+        "phone": "0774563220"
+    }
+]
+)

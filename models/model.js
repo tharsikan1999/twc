@@ -13,6 +13,6 @@ const model = new Schema(
   }
 );
 
-const collections = mongoose.models.user || mongoose.model("user", model);
+const collections = mongoose.models.Contact || mongoose.model("Contact", model);
 
 export default collections;
