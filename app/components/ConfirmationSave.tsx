@@ -3,13 +3,11 @@ import React from "react";
 // Define the prop types for the component
 interface ConfirmationDialogProps {
   isOpen: boolean;
-  onConfirm: () => void;
   onCancel: () => void;
 }
 
-var ConfirmationAddDialog: React.FC<ConfirmationDialogProps> = ({
+var ConfirmationSave: React.FC<ConfirmationDialogProps> = ({
   isOpen,
-  onConfirm,
   onCancel,
 }) => {
   if (!isOpen) {
@@ -17,11 +15,7 @@ var ConfirmationAddDialog: React.FC<ConfirmationDialogProps> = ({
   }
 
   const handleConfirm = () => {
-    onConfirm();
-  };
-
-  const handleCancel = () => {
-    onCancel(); // Close the modal
+    onCancel();
   };
 
   return (
@@ -44,4 +38,4 @@ var ConfirmationAddDialog: React.FC<ConfirmationDialogProps> = ({
   );
 };
 
-export default ConfirmationAddDialog;
+export default ConfirmationSave;

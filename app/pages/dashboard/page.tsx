@@ -12,8 +12,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ConfirmationDeleteDialog from "../../components/ConfirmationDeleteDialog";
-import ConfirmationAddDialog from "../../components/ConfirmationAddDialog";
 import ConfirmationDelete from "../../components/ConfirmationDelete";
+import ConfirmationSave from "@/app/components/ConfirmationSave";
 import { useRouter } from "next/navigation";
 import { FiRefreshCw } from "react-icons/fi";
 
@@ -52,7 +52,6 @@ function Table() {
   };
 
   const handleConfirm = async () => {
-    setSaveDialogOpen(false);
     // Handle the deletion
     try {
       const userIdToDelete = users[index]._id;
@@ -104,6 +103,7 @@ function Table() {
         // Exit edit mode
         setEditIndex(null);
         setEditedUser(null);
+        setSaveDialogOpen(true);
       } catch (error) {
         console.error("Error updating user:", error);
         alert("Failed to update user. Please try again.");
@@ -114,10 +114,10 @@ function Table() {
   const handleCancel = () => {
     // Handle cancellation logic
     setDialogOpen(false);
-    setSaveDialogOpen(false);
     setDeleteSuccess(false);
     setEditIndex(null);
     setEditedUser(null);
+    setSaveDialogOpen(false);
   };
 
   const handleDelete = (index: number) => {
@@ -310,6 +310,10 @@ function Table() {
                         />
                         <ConfirmationDelete
                           isOpen={deleteSuccess}
+                          onCancel={handleCancel}
+                        />
+                        <ConfirmationSave
+                          isOpen={saveDialogOpen}
                           onCancel={handleCancel}
                         />
                       </td>
