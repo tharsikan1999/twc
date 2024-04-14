@@ -29,7 +29,9 @@ var ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-15 ">
       <div className="bg-white p-6 text-center lg:w-[842px] w-3/4 lg:h-[215px] flex flex-col justify-center rounded-[30px]">
-        <p className="mb-4 font-normal lg:text-[30px] text-[20px]">{message}</p>
+        <p className="mb-4 font-normal lg:text-[30px] text-[20px] leading-8">
+          {message}
+        </p>
         <div className=" mt-8">
           {" "}
           <button

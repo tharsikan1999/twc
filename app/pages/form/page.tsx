@@ -114,6 +114,10 @@ function AddContact() {
     }
   };
 
+  const GoToHome = () => {
+    router.push("/");
+  };
+
   return (
     <main className="bg-customGreen w-full min-h-screen flex flex-col lg:items-center lg:relative">
       <div className="my-5 lg:w-3/4 mt-[72px]">
@@ -123,6 +127,7 @@ function AddContact() {
               src={logo}
               alt="logo"
               className="h-[24.03px] w-[72.94px] cursor-pointer mb-3"
+              onClick={GoToHome}
             />
             <Image
               src={contactIMG}
