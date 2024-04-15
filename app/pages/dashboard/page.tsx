@@ -59,7 +59,6 @@ function Table() {
       });
 
       const data = await res.json();
-      console.log(data);
       setUsers(data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -146,6 +145,13 @@ function Table() {
   };
 
   const GoToHome = () => {
+    router.push("/");
+  };
+
+  const handleLogout = () => {
+    // Remove JWT token from local storage
+    localStorage.removeItem("jwt");
+
     router.push("/");
   };
 
@@ -342,7 +348,10 @@ function Table() {
         </div>
 
         {/* Logout Section */}
-        <div className="flex space-x-3 items-center justify-center cursor-pointer mt-14 absolute left-[35%] sm:left-[40%] md:left-[45%] bottom-5 lg:justify-end lg:right-14 md:bottom-5 lg:bottom-10">
+        <div
+          className="flex space-x-3 items-center justify-center cursor-pointer mt-14 absolute left-[35%] sm:left-[40%] md:left-[45%] bottom-5 lg:justify-end lg:right-14 md:bottom-5 lg:bottom-10"
+          onClick={handleLogout}
+        >
           <Image src={logoutIMG} alt="Logout" height={24} width={24} />
           <p className="underline underline-offset-4 text-white font-normal text-[20px]">
             Logout

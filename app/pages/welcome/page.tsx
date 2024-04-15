@@ -15,6 +15,13 @@ function Welcome() {
     router.push("/");
   };
 
+  const handleLogout = () => {
+    // Remove JWT token from local storage
+    localStorage.removeItem("jwt");
+
+    router.push("/");
+  };
+
   return (
     <main className=" bg-customGreen w-full min-h-screen flex flex-col  lg:items-center lg:relative">
       <div className=" mt-10 lg:w-3/4 h-screen relative lg:pt-[72px] ">
@@ -53,7 +60,10 @@ function Welcome() {
           </div>
         </form>
         <Link href="/">
-          <div className=" flex space-x-3 items-center justify-center cursor-pointer mt-14 absolute left-[35%] sm:left-[40%] md:left-[45%] bottom-14 lg:justify-end lg:right-14 lg:bottom-14">
+          <div
+            className=" flex space-x-3 items-center justify-center cursor-pointer mt-14 absolute left-[35%] sm:left-[40%] md:left-[45%] bottom-14 lg:justify-end lg:right-14 lg:bottom-14"
+            onClick={handleLogout}
+          >
             <Image src={logoutIMG} alt="logout IMG" />
             <p className=" underline underline-offset-4 text-white font-normal text-[20px]">
               logout

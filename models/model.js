@@ -7,16 +7,14 @@ const contactSchema = new Schema(
       type: String,
       required: true,
     },
-
     gender: {
       type: String,
-      enum: ["Male", "Female", "Other"],
-      default: "Other",
+      enum: ["Male", "Female"],
+      default: "Female",
     },
     email: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
       validate: {
         validator: function (v) {

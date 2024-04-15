@@ -98,8 +98,20 @@ function AddContact() {
     }
 
     try {
-      // Make a POST request to the server with the form data
-      await axios.post("/api/add", contactData);
+      // Retrieve JWT token from local storage
+      const token = localStorage.getItem("jwt");
+
+      if (!token) {
+        throw new Error("JWT token not found in local storage");
+      }
+
+      // Make a POST request to the server with the form data and headers
+      await axios.post("/api/add", contactData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       // Perform any additional actions after the request, e.g. clearing the form
       setContactData({
         name: "",
@@ -116,6 +128,13 @@ function AddContact() {
   };
 
   const GoToHome = () => {
+    router.push("/");
+  };
+
+  const handleLogout = () => {
+    // Remove JWT token from local storage
+    localStorage.removeItem("jwt");
+
     router.push("/");
   };
 
@@ -219,7 +238,10 @@ function AddContact() {
           </div>
         </form>
         <Link href="/">
-          <div className="flex space-x-3 items-center justify-center cursor-pointer mt-14 lg:absolute lg:right-14 lg:bottom-14">
+          <div
+            className="flex space-x-3 items-center justify-center cursor-pointer mt-14 lg:absolute lg:right-14 lg:bottom-14"
+            onClick={handleLogout}
+          >
             <Image src={logoutIMG} alt="logout IMG" className="w-6 h-6" />
             <p className="underline underline-offset-4 text-white font-normal text-[20px]">
               Logout
