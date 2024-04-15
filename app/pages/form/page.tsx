@@ -1,5 +1,6 @@
 "use client";
 
+import withAuth from "../../../middleware/withAuth";
 import logo from "../../assets/img/Logo-white.png";
 import Image from "next/image";
 import contactIMG from "../../assets/img/contacts portal white.png";
@@ -230,4 +231,4 @@ function AddContact() {
   );
 }
 
-export default AddContact;
+export default withAuth(AddContact);

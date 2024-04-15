@@ -1,5 +1,7 @@
 "use client";
 
+import withAuth from "../../../middleware/withAuth";
+
 import logo from "../../assets/img/Logo-white.png";
 import Image from "next/image";
 import contactIMG from "../../assets/img/contacts portal white.png";
@@ -16,6 +18,7 @@ import ConfirmationDelete from "../../components/ConfirmationDelete";
 import ConfirmationSave from "@/app/components/ConfirmationSave";
 import { useRouter } from "next/navigation";
 import { FiRefreshCw } from "react-icons/fi";
+import { headers } from "next/headers";
 
 function Table() {
   const router = useRouter();
@@ -42,8 +45,21 @@ function Table() {
 
   const fetchNotes = async () => {
     try {
-      const res = await fetch("/api/get");
+      // Retrieve JWT token from local storage
+      const token = localStorage.getItem("jwt");
+
+      if (!token) {
+        throw new Error("JWT token not found in local storage");
+      }
+
+      const res = await fetch("/api/get", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       const data = await res.json();
+      console.log(data);
       setUsers(data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -240,9 +256,9 @@ function Table() {
                             onClick={() => {
                               // Toggle gender value between 'female' and 'male'
                               const newGender =
-                                editedUser?.gender === "female"
+                                editedUser?.gender === "Female"
                                   ? "Male"
-                                  : "female";
+                                  : "Female";
                               handleInputChange(
                                 { target: { value: newGender } },
                                 "gender"
@@ -337,4 +353,4 @@ function Table() {
   );
 }
 
-export default Table;
+export default withAuth(Table);

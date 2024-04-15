@@ -1,5 +1,7 @@
 "use client";
 
+import withAuth from "../../../middleware/withAuth";
+
 import logo from "../../assets/img/Logo-white.png";
 import Image from "next/image";
 import contactIMG from "../../assets/img/contacts portal white.png";
@@ -9,7 +11,6 @@ import { useRouter } from "next/navigation";
 
 function Welcome() {
   const router = useRouter();
-
   const GoToHome = () => {
     router.push("/");
   };
@@ -64,4 +65,4 @@ function Welcome() {
   );
 }
 
-export default Welcome;
+export default withAuth(Welcome);
