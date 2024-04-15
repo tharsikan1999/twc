@@ -1,9 +1,12 @@
 import connectToMongoDB from "../../../libs/mongodb";
-import collections from "../../../models/register";
+import collections from "../../../models/user";
 import { NextResponse, NextRequest } from "next/server";
 import bcrypt from "bcrypt";
+const jwt = require("jsonwebtoken");
 
 export async function POST(request: NextRequest) {
+  const jwtSecret = process.env.JWT_SECRET;
+
   try {
     // Connect to MongoDB
     await connectToMongoDB();
@@ -36,9 +39,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Generate a JWT token with expiration time
+    const token = jwt.sign(
+      { userId: user._id },
+      jwtSecret,
+      { expiresIn: "1h" } // Token expires in 1 hour
+    );
+
     // Return a success response with a message and user's information
     return NextResponse.json(
-      { message: "Login successful.", user: { email: user.email } },
+      { message: "Login successful.", user: { email: user.email }, token },
       { status: 200 }
     );
   } catch (error) {

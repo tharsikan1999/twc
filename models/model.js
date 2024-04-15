@@ -1,18 +1,46 @@
 import mongoose, { Schema } from "mongoose";
+import User from "../models/user";
 
-const model = new Schema(
+const contactSchema = new Schema(
   {
-    name: String,
-    gender: String,
-    email: String,
-    phone: String,
-  },
+    name: {
+      type: String,
+      required: true,
+    },
 
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "Other"],
+      default: "Other",
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      validate: {
+        validator: function (v) {
+          return /^\S+@\S+\.\S+$/.test(v);
+        },
+        message: (props) => `${props.value} is not a valid email format!`,
+      },
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    userID: {
+      type: Schema.Types.ObjectId,
+      ref: User,
+      required: true,
+    },
+  },
   {
     timestamps: true,
   }
 );
 
-const collections = mongoose.models.Contact || mongoose.model("Contact", model);
+const Contact =
+  mongoose.models.contact || mongoose.model("contact", contactSchema);
 
-export default collections;
+export default Contact;

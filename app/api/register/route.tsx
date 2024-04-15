@@ -1,5 +1,5 @@
 import connectToMongoDB from "../../../libs/mongodb";
-import collections from "../../../models/register";
+import collections from "../../../models/user";
 import { NextResponse, NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {

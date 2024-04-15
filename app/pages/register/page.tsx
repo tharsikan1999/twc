@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../assets/img/logo.png";
 import contactIMG from "../../assets/img/contacts portal.png";
+import { AxiosError } from "axios";
 
 interface FormData {
   email: string;
@@ -56,13 +57,24 @@ function Register() {
       // Handle successful registration
       if (response.status === 201) {
         // Redirect to welcome page
-        window.location.href = "/pages/welcome";
+        window.location.href = "/";
       }
     } catch (error) {
-      console.error("Error registering user:", error);
-      setErrorMessage(
-        "Password must contain at least one uppercase letter, one lowercase letter, and one number."
-      );
+      const axiosError = error as AxiosError;
+
+      if (axiosError.response) {
+        const { status, data } = axiosError.response;
+
+        // Assume `data` has a shape of `{ error: string }`
+        const responseData = data as { error: string };
+
+        // Access `responseData.error` safely after type assertion
+        setErrorMessage(
+          responseData.error || "An error occurred during registration."
+        );
+      } else {
+        setErrorMessage("An error occurred during registration.");
+      }
     }
   };
 

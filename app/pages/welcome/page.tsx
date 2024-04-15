@@ -1,10 +1,19 @@
+"use client";
+
 import logo from "../../assets/img/Logo-white.png";
 import Image from "next/image";
 import contactIMG from "../../assets/img/contacts portal white.png";
 import logoutIMG from "../../assets/img/bx_log-out-circle.png";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function Welcome() {
+  const router = useRouter();
+
+  const GoToHome = () => {
+    router.push("/");
+  };
+
   return (
     <main className=" bg-customGreen w-full min-h-screen flex flex-col  lg:items-center lg:relative">
       <div className=" mt-10 lg:w-3/4 h-screen relative lg:pt-[72px] ">
@@ -14,6 +23,7 @@ function Welcome() {
               src={logo}
               alt="logo"
               className="h-[24.03px] w-[72.94px] cursor-pointer mb-3"
+              onClick={GoToHome}
             />
             <Image
               src={contactIMG}
