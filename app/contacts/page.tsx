@@ -189,7 +189,7 @@ function Table() {
           </p>
         </div>
 
-        <div className="absolute top-0 z-20 w-full flex justify-center max-h-screen overflow-scroll">
+        <div className="absolute top-0 z-20 w-full flex justify-center max-h-screen min-h-screen  overflow-scroll">
           <div className="lg:w-3/4 w-[90%] ">
             {/* Header Section */}
             <div className="w-full flex flex-col items-center lg:items-start mt-[72px]">
