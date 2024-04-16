@@ -19,7 +19,10 @@ var ConfirmationSave: React.FC<ConfirmationDialogProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-15 ">
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-15  "
+      style={{ fontFamily: "FuturaMediumBT" }}
+    >
       <div className="bg-white p-6 text-center lg:w-[842px] w-3/4 lg:h-[215px] flex flex-col justify-center rounded-[30px]">
         <p className="mb-4 font-normal lg:text-[30px] text-[20px]">
           Your contact has been saved successfully!

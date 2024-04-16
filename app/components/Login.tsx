@@ -13,7 +13,9 @@ function Login() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
 
     // Perform form validation if necessary
@@ -49,16 +51,19 @@ function Login() {
   };
 
   return (
-    <main className="flex w-full items-center  justify-between flex-col-reverse sm:flex-row sm:min-h-screen">
+    <main
+      className="flex w-full items-center  justify-between flex-col-reverse sm:flex-row sm:min-h-screen"
+      style={{ fontFamily: "FuturaMediumBT" }}
+    >
       <div className="w-full bg-customGreen flex items-center justify-center flex-col py-16 md:py-0 px-4 sm:min-h-screen sm:px-5 lg:w-1/2">
         <div className="flex flex-col justify-evenly items-center w-full md:items-start md:w-auto">
-          <div className="w-[263px]">
+          <div className="w-[293px]">
             <h1 className="text-[50px] font-bold text-white">Hi there,</h1>
             <span className="text-[35px] font-normal text-white">
               Welcome to our contacts portal
             </span>
           </div>
-          <form className="w-full mt-14" onSubmit={handleLogin}>
+          <form className="w-full mt-14">
             <input
               type="email"
               value={email}
@@ -77,27 +82,31 @@ function Login() {
             />
             {/* Error message */}
             {error && <div className="text-red-500 mb-4">{error}</div>}
-            <div className="flex justify-center md:justify-start">
+          </form>
+
+          <div className=" flex justify-between items-center md:flex-row flex-col mt-8">
+            <div className="flex justify-center md:justify-start ">
               <button
                 type="submit"
                 className="text-white bg-customGreen border-2 focus:outline-none focus:ring-gray-300 w-[131px] px-3  h-[48px] md:text-[25px] text-[23px] border-1 border-white rounded-[50px]"
+                onClick={handleLogin}
               >
                 Login
               </button>
             </div>
-          </form>
 
-          <div className="flex justify-start mt-10">
-            <Link href="/pages/register">
-              <div className="h-[40px] text-white ml-4 flex items-center">
-                <p className="text-[20px] md:text-[25px]">
-                  or{" "}
-                  <span className="underline underline-offset-4 cursor-pointer">
-                    Click here to Register
-                  </span>
-                </p>
-              </div>
-            </Link>
+            <div className="flex justify-start mt-6 md:mt-0">
+              <Link href="/pages/register">
+                <div className="h-[40px] text-white ml-4 flex items-center">
+                  <p className="text-[20px] md:text-[25px]">
+                    or{" "}
+                    <span className="underline underline-offset-4 cursor-pointer">
+                      Click here to Register
+                    </span>
+                  </p>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

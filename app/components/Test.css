@@ -1,5 +1,0 @@
-.box::after {
-  content: " ";
-  border-bottom: 100vh solid #dd4f39;
-  border-right: 100vw solid transparent;
-}

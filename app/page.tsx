@@ -6,7 +6,7 @@ import Test from "./components/test";
 function Home() {
   return (
     <>
-      <Login />
+      <Test />
     </>
   );
 }

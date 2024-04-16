@@ -19,6 +19,9 @@ import ConfirmationSave from "@/app/components/ConfirmationSave";
 import { useRouter } from "next/navigation";
 import { FiRefreshCw } from "react-icons/fi";
 import { headers } from "next/headers";
+import Ellipse01 from "../../assets/img/Ellipse 1.png";
+import RightImage from "../../assets/img/Right_back.png";
+import LeftImage from "../../assets/img/Left_back.png";
 
 function Table() {
   const router = useRouter();
@@ -156,213 +159,229 @@ function Table() {
   };
 
   return (
-    <main className="bg-customGreen w-full min-h-screen flex flex-col lg:items-center md:relative px-5 xl:px-0 md:pb-10">
-      <div className="lg:w-3/4 min-h-screen lg:pt-[72px] lg:mb-28">
-        {/* Header Section */}
-        <div className="w-full flex flex-col items-center lg:items-start mt-[72px]">
-          <div>
-            <Image
-              src={logo}
-              alt="Logo"
-              height={24.03}
-              width={72.94}
-              className="cursor-pointer mb-3"
-              onClick={GoToHome}
-            />
-            <Image
-              src={contactIMG}
-              alt="Contact Image"
-              height={60.77}
-              width={136.76}
-              className=""
-            />
-          </div>
+    <main
+      className=" w-full min-h-screen flex flex-col lg:items-center lg:relative"
+      style={{ fontFamily: "FuturaMediumBT" }}
+    >
+      <div className="relative w-full h-screen flex ">
+        <Image
+          src={Ellipse01}
+          alt=""
+          className="  w-full h-full object-cover z-10"
+        />
+        <div className="absolute left-0 bottom-0">
+          <Image src={LeftImage} alt="" className="" />
+        </div>
+        <div className="absolute right-0 top-0">
+          <Image src={RightImage} alt="" className="" />
         </div>
 
-        {/* Contacts Header and Add Button */}
-        <div className="flex justify-between items-center lg:mt-14 sm:px-5">
-          <h1 className="text-[30px] md:text-[50px] my-10 font-bold text-white text-left">
-            Contacts
-          </h1>
-          <Link href="/pages/form">
-            <button
-              type="button"
-              className="text-white leading-4 bg-customGreen border-2 focus:outline-none focus:ring-gray-300 border-white w-[150px] sm:w-[255px] h-[38px] md:h-[48px] rounded-full text-[14px] md:text-[25px] sm:text-[20px] font-normal"
-            >
-              Add New Contact
-            </button>
-          </Link>
+        <div
+          className="flex space-x-3 items-center justify-center cursor-pointer lg:mt-14 w-full lg:w-auto absolute  lg:right-14 bottom-10 lg:bottom-14 z-50"
+          onClick={handleLogout}
+        >
+          <Image
+            src={logoutIMG}
+            alt="logout IMG"
+            className="md:w-[43px] md:h-[43px] h-8 w-8"
+          />
+          <p className="underline underline-offset-4 text-white font-normal text-[20px] md:text-[25px]">
+            Logout
+          </p>
         </div>
 
-        {/* Contacts Table */}
-        <div className="relative overflow-x-auto shadow-md bg-white rounded-[30px]">
-          <table className="w-full text-sm text-left rtl:text-right">
-            <thead className="text-customGreen font-bold md:text-[18px] text-[15px] uppercase">
-              <tr>
-                <th scope="col" className="px-6 py-3"></th>
-                <th scope="col" className="px-6 py-3 md:pt-6">
-                  Full Name
-                </th>
-                <th scope="col" className="px-6 py-3 md:pt-6">
-                  Gender
-                </th>
-                <th scope="col" className="px-6 py-3 md:pt-6">
-                  Email
-                </th>
-                <th scope="col" className="px-6 py-3 md:pt-6">
-                  Phone
-                </th>
-                <th scope="col" className="py-3 md:pt-6"></th>
-                <th scope="col" className="py-3 md:pt-6"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => (
-                <tr
-                  key={index}
-                  className="text-[17px] font-normal text-customGreen"
+        <div className="absolute top-0 z-20 w-full flex justify-center max-h-screen overflow-scroll">
+          <div className="lg:w-3/4 w-[90%] ">
+            {/* Header Section */}
+            <div className="w-full flex flex-col items-center lg:items-start mt-[72px]">
+              <div>
+                <Image
+                  src={logo}
+                  alt="Logo"
+                  height={24.03}
+                  width={72.94}
+                  className="cursor-pointer mb-3"
+                  onClick={GoToHome}
+                />
+                <Image
+                  src={contactIMG}
+                  alt="Contact Image"
+                  height={60.77}
+                  width={136.76}
+                  className=""
+                />
+              </div>
+            </div>
+
+            {/* Contacts Header and Add Button */}
+            <div className="flex justify-between items-center lg:mt-14 sm:px-5">
+              <h1 className="text-[30px] md:text-[50px] my-10 font-bold text-white text-left">
+                Contacts
+              </h1>
+              <Link href="/pages/form">
+                <button
+                  type="button"
+                  className="text-white leading-4 bg-customGreen border-2 focus:outline-none focus:ring-gray-300 border-white w-[150px] sm:w-[255px] h-[38px] md:h-[48px] rounded-full text-[14px] md:text-[25px] sm:text-[20px] font-normal"
                 >
-                  {/* User's Image */}
-                  <th
-                    scope="row"
-                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    <Image
-                      className="w-[59px] h/[59px] cursor-pointer rounded-full"
-                      src={user.gender === "Male" ? Man : Girl}
-                      alt={`${user.name} image`}
-                    />
-                  </th>
+                  Add New Contact
+                </button>
+              </Link>
+            </div>
 
-                  {/* Edit Mode or Display Mode */}
-                  {editIndex === index ? (
-                    <>
-                      <td className=" px-3 py-3">
-                        <div className=" relative">
-                          <input
-                            type="text"
-                            value={editedUser?.name}
-                            onChange={(e) => handleInputChange(e, "name")}
-                            className="h-[35px]  bg-customGreen bg-opacity-10 pl-3 border-customGreen"
-                          />
-                          <div className="h-[30px] w-[2px] bg-customGreen bg-opacity-75 absolute top-[2px] right-2 lg:right-5"></div>
-                        </div>
-                      </td>
-                      <td className="px-3 py-3">
-                        <div className="relative">
-                          <input
-                            type="text"
-                            value={editedUser?.gender}
-                            onChange={(e) => handleInputChange(e, "gender")}
-                            className="h-[35px] bg-customGreen bg-opacity-10 pl-3 border-customGreen w-full pr-8"
-                          />
-                          {/* Event handler for the refresh button */}
-                          <FiRefreshCw
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                            onClick={() => {
-                              // Toggle gender value between 'female' and 'male'
-                              const newGender =
-                                editedUser?.gender === "Female"
-                                  ? "Male"
-                                  : "Female";
-                              handleInputChange(
-                                { target: { value: newGender } },
-                                "gender"
-                              );
-                            }}
-                          />
-                        </div>
-                      </td>
+            {/* Contacts Table */}
+            <div className="relative overflow-x-auto shadow-md bg-white rounded-[30px]">
+              <table className="w-full text-sm text-left rtl:text-right overflow-scroll ">
+                <thead className="text-customGreen font-bold md:text-[18px] text-[15px] uppercase">
+                  <tr>
+                    <th scope="col" className="px-6 py-3"></th>
+                    <th scope="col" className="px-6 py-3 md:pt-6">
+                      Full Name
+                    </th>
+                    <th scope="col" className="px-6 py-3 md:pt-6">
+                      Gender
+                    </th>
+                    <th scope="col" className="px-6 py-3 md:pt-6">
+                      Email
+                    </th>
+                    <th scope="col" className="px-6 py-3 md:pt-6">
+                      Phone
+                    </th>
+                    <th scope="col" className="py-3 md:pt-6"></th>
+                    <th scope="col" className="py-3 md:pt-6"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map((user, index) => (
+                    <tr
+                      key={index}
+                      className="text-[17px] font-normal text-customGreen"
+                    >
+                      {/* User's Image */}
+                      <th
+                        scope="row"
+                        className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        <Image
+                          className="w-[59px] h/[59px] cursor-pointer rounded-full"
+                          src={user.gender === "Male" ? Man : Girl}
+                          alt={`${user.name} image`}
+                        />
+                      </th>
 
-                      <td className=" px-3 py-3">
-                        <div className=" relative">
-                          <input
-                            type="text"
-                            value={editedUser?.email}
-                            onChange={(e) => handleInputChange(e, "email")}
-                            className="h-[35px]  bg-customGreen bg-opacity-10 pl-3 border-customGreen"
-                          />
-                          <div className="h-[30px] w-[2px] bg-customGreen bg-opacity-75 absolute top-[2px] lg:right-7 right-4 "></div>
-                        </div>
-                      </td>
-                      <td className=" px-3 py-3">
-                        <div className=" relative">
-                          <input
-                            type="text"
-                            value={editedUser?.phone}
-                            onChange={(e) => handleInputChange(e, "phone")}
-                            className="h-[35px]  bg-customGreen bg-opacity-10 pl-3 border-customGreen"
-                          />
-                          <div className="h-[30px] w-[2px] bg-customGreen bg-opacity-75 absolute top-[2px] right-2 lg:right-5"></div>
-                        </div>
-                      </td>
-                      <td className="text-right">
-                        {/* Save and Cancel Buttons */}
-                        <button
-                          className="w-[72px] h-[35px] bg-customGreen text-white rounded-[50px] text-[16px] font-normal leading-3"
-                          onClick={handleSave}
-                        >
-                          save
-                        </button>
-                      </td>
-                    </>
-                  ) : (
-                    <>
-                      {/* Display Mode: Render user details */}
-                      <td className="px-6 py-4">{user.name}</td>
-                      <td className="px-6 py-4">{user.gender}</td>
-                      <td className="px-6 py-4">{user.email}</td>
-                      <td className="px-6 py-4">{user.phone}</td>
-                      <td className="px-6 py-4">
-                        <FaPen
-                          className="cursor-pointer"
-                          onClick={() => handleEdit(index)}
-                        />
-                      </td>
-                      <td className="px-6 py-4">
-                        <FaRegTrashCan
-                          className="cursor-pointer"
-                          onClick={() => handleDelete(index)}
-                        />
-                        <ConfirmationDeleteDialog
-                          isOpen={isDialogOpen}
-                          onConfirm={handleConfirm}
-                          onCancel={handleCancel}
-                          message={`Do you want to delete the contact ${selectedUserName}?`}
-                        />
-                        <ConfirmationDelete
-                          isOpen={deleteSuccess}
-                          onCancel={handleCancel}
-                        />
-                        <ConfirmationSave
-                          isOpen={saveDialogOpen}
-                          onCancel={handleCancel}
-                        />
-                      </td>
-                    </>
-                  )}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                      {/* Edit Mode or Display Mode */}
+                      {editIndex === index ? (
+                        <>
+                          <td className=" px-3 py-3">
+                            <div className=" relative">
+                              <input
+                                type="text"
+                                value={editedUser?.name}
+                                onChange={(e) => handleInputChange(e, "name")}
+                                className="h-[35px]  bg-customGreen bg-opacity-10 pl-3 border-customGreen"
+                              />
+                              <div className="h-[30px] w-[2px] bg-customGreen bg-opacity-75 absolute top-[2px] right-2 lg:right-5"></div>
+                            </div>
+                          </td>
+                          <td className="px-3 py-3">
+                            <div className="relative">
+                              <input
+                                type="text"
+                                value={editedUser?.gender}
+                                onChange={(e) => handleInputChange(e, "gender")}
+                                className="h-[35px] bg-customGreen bg-opacity-10 pl-3 border-customGreen w-full pr-8"
+                              />
+                              {/* Event handler for the refresh button */}
+                              <FiRefreshCw
+                                className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                onClick={() => {
+                                  // Toggle gender value between 'female' and 'male'
+                                  const newGender =
+                                    editedUser?.gender === "Female"
+                                      ? "Male"
+                                      : "Female";
+                                  handleInputChange(
+                                    { target: { value: newGender } },
+                                    "gender"
+                                  );
+                                }}
+                              />
+                            </div>
+                          </td>
 
-        {/* Logout Section */}
-        <Link href="/">
-          <div
-            className="flex space-x-3 items-center justify-center cursor-pointer lg:mt-14 w-full lg:w-auto absolute  lg:right-14 bottom-10 lg:bottom-14"
-            onClick={handleLogout}
-          >
-            <Image
-              src={logoutIMG}
-              alt="logout IMG"
-              className="md:w-[43px] md:h-[43px] h-8 w-8"
-            />
-            <p className="underline underline-offset-4 text-white font-normal text-[20px] md:text-[25px]">
-              Logout
-            </p>
+                          <td className=" px-3 py-3">
+                            <div className=" relative">
+                              <input
+                                type="text"
+                                value={editedUser?.email}
+                                onChange={(e) => handleInputChange(e, "email")}
+                                className="h-[35px]  bg-customGreen bg-opacity-10 pl-3 border-customGreen"
+                              />
+                              <div className="h-[30px] w-[2px] bg-customGreen bg-opacity-75 absolute top-[2px] lg:right-7 right-4 "></div>
+                            </div>
+                          </td>
+                          <td className=" px-3 py-3">
+                            <div className=" relative">
+                              <input
+                                type="text"
+                                value={editedUser?.phone}
+                                onChange={(e) => handleInputChange(e, "phone")}
+                                className="h-[35px]  bg-customGreen bg-opacity-10 pl-3 border-customGreen"
+                              />
+                              <div className="h-[30px] w-[2px] bg-customGreen bg-opacity-75 absolute top-[2px] right-2 lg:right-5"></div>
+                            </div>
+                          </td>
+                          <td className="text-right">
+                            {/* Save and Cancel Buttons */}
+                            <button
+                              className="w-[72px] h-[35px] bg-customGreen text-white rounded-[50px] text-[16px] font-normal leading-3"
+                              onClick={handleSave}
+                            >
+                              save
+                            </button>
+                          </td>
+                        </>
+                      ) : (
+                        <>
+                          {/* Display Mode: Render user details */}
+                          <td className="px-6 py-4">{user.name}</td>
+                          <td className="px-6 py-4">{user.gender}</td>
+                          <td className="px-6 py-4">{user.email}</td>
+                          <td className="px-6 py-4">{user.phone}</td>
+                          <td className="px-6 py-4">
+                            <FaPen
+                              className="cursor-pointer"
+                              onClick={() => handleEdit(index)}
+                            />
+                          </td>
+                          <td className="px-6 py-4">
+                            <FaRegTrashCan
+                              className="cursor-pointer"
+                              onClick={() => handleDelete(index)}
+                            />
+                            <ConfirmationDeleteDialog
+                              isOpen={isDialogOpen}
+                              onConfirm={handleConfirm}
+                              onCancel={handleCancel}
+                              message={`Do you want to delete the contact ${selectedUserName}?`}
+                            />
+                            <ConfirmationDelete
+                              isOpen={deleteSuccess}
+                              onCancel={handleCancel}
+                            />
+                            <ConfirmationSave
+                              isOpen={saveDialogOpen}
+                              onCancel={handleCancel}
+                            />
+                          </td>
+                        </>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </Link>
+        </div>
       </div>
     </main>
   );

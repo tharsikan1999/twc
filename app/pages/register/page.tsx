@@ -8,6 +8,8 @@ import logo from "../../assets/img/logo.png";
 import contactIMG from "../../assets/img/contacts portal.png";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import Ellipse from "../../assets/img/auth-Ellipse.png";
+import Bg from "../../assets/img/background.png";
 
 interface FormData {
   email: string;
@@ -85,9 +87,25 @@ function Register() {
   };
 
   return (
-    <main className="flex w-full items-center justify-between flex-col-reverse sm:flex-row sm:min-h-screen">
+    <main
+      className="flex w-full items-center justify-between flex-col-reverse sm:flex-row sm:min-h-screen"
+      style={{ fontFamily: "FuturaMediumBT" }}
+    >
+      <div className="w-full h-screen relative flex">
+        <Image
+          src={Bg}
+          alt=""
+          className="w-1/2 h-full absolute object-cover z-10 right-0 "
+        />
+        <Image
+          src={Ellipse}
+          alt=""
+          className="w-3/5 h-screen absolute  z-20 left-0"
+        />
+      </div>
+
       {/* Registration form */}
-      <div className="w-full bg-customGreen flex items-center justify-center flex-col py-16 md:py-0 px-4 sm:min-h-screen sm:px-5 lg:w-1/2">
+      <div className="w-full flex items-center absolute left-0 z-50 justify-center flex-col py-16 md:py-0 px-4 sm:min-h-screen sm:px-5 lg:w-1/2">
         <div className="flex flex-col justify-evenly items-center w-full md:items-start md:w-auto">
           {/* Form Title */}
           <h1 className="sm:text-[50px] text-[35px] font-bold text-white md:text-left  text-center">
@@ -140,7 +158,7 @@ function Register() {
             <div className="flex justify-center md:justify-start">
               <button
                 type="submit"
-                className="text-white bg-customGreen border-2 focus:outline-none focus:ring-gray-300 w-[131px] px-3  h-[48px] md:text-[25px] text-[23px] border-1 border-white rounded-[50px]"
+                className="text-white bg-customGreen border-2 focus:outline-none focus:ring-gray-300 w-[131px] px-3  h-[48px] md:text-[25px] text-[23px] border-1 border-white rounded-[50px] lg:mt-8 mt-4"
               >
                 register
               </button>
@@ -160,15 +178,8 @@ function Register() {
       </div>
 
       {/* Logo and contact images */}
-      <div className="w-full py-36 md:py-0 truncate flex justify-center relative items bg-back sm:min-h-screen sm:px-5 lg:w-1/2">
-        <div
-          className=" h-screen w-52 absolute hidden lg:block bg-customGreen"
-          style={{
-            borderRadius: "0 100% 100% 0",
-            left: "-100px",
-          }}
-        ></div>
-        <div className="w-full flex flex-col lg:pl-10 justify-center items-center">
+      <div className="w-full py-36 md:py-0 truncate flex absolute right-0 justify-center items bg-back sm:min-h-screen pl-10 lg:pl-0 lg:w-1/2">
+        <div className="w-full flex flex-col lg:pl-10 justify-center items-center border-2 border-red-600 ">
           <div>
             <Image
               src={logo}
