@@ -1,18 +1,17 @@
 "use client";
 
-import withAuth from "../../../middleware/withAuth";
-import logo from "../../assets/img/Logo-white.png";
+import logo from "../assets/img/Logo-white.png";
 import Image from "next/image";
-import contactIMG from "../../assets/img/contacts portal white.png";
-import logoutIMG from "../../assets/img/bx_log-out-circle.png";
+import contactIMG from "../assets/img/contacts portal white.png";
+import logoutIMG from "../assets/img/bx_log-out-circle.png";
 import Link from "next/link";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Ellipse01 from "../../assets/img/Ellipse 1.png";
-import RightImage from "../../assets/img/Right_back.png";
-import LeftImage from "../../assets/img/Left_back.png";
+import Ellipse01 from "../assets/img/Ellipse 1.png";
+import RightImage from "../assets/img/Right_back.png";
+import LeftImage from "../assets/img/Left_back.png";
 
 function Welcome() {
   const router = useRouter();
@@ -130,6 +129,10 @@ function Welcome() {
     }
   };
 
+  const GoToLogin = () => {
+    router.push("/login");
+  };
+
   const GoToHome = () => {
     router.push("/");
   };
@@ -184,14 +187,13 @@ function Welcome() {
             </p>
             <form action="" className="w-full mt-32 lg:mt-20 px-6  lg:px-0 ">
               <div className=" flex justify-center mt-10 lg:justify-start lg:mt-20 ">
-                <Link href="/pages/form">
-                  <button
-                    type="button"
-                    className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white px-2  md:w-[323px] w-[280px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] font-normal"
-                  >
-                    add your first contact
-                  </button>
-                </Link>
+                <button
+                  type="button"
+                  className="text-white bg-customGreen border-2 focus:outline-none  focus:ring-gray-300  border-white px-2  md:w-[323px] w-[280px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] font-normal"
+                  onClick={GoToLogin}
+                >
+                  add your first contact
+                </button>
               </div>
             </form>
             <Link href="/">
@@ -216,4 +218,4 @@ function Welcome() {
   );
 }
 
-export default withAuth(Welcome);
+export default Welcome;

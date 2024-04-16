@@ -1,11 +1,11 @@
 "use client";
 
-import Login from "./components/Login";
+import Welcome from "./components/Welcome";
 
 function Home() {
   return (
     <>
-      <Login />
+      <Welcome />
     </>
   );
 }

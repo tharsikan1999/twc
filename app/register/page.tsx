@@ -4,12 +4,11 @@ import { useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../assets/img/logo.png";
-import contactIMG from "../../assets/img/contacts portal.png";
+import logo from "../assets/img/logo.png";
+import contactIMG from "../assets/img/contacts portal.png";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
-import Ellipse from "../../assets/img/auth-Ellipse.png";
-import Bg from "../../assets/img/background.png";
+import Ellipse from "../assets/img/auth-Ellipse.png";
 
 interface FormData {
   email: string;
@@ -61,7 +60,7 @@ function Register() {
       // Handle successful registration
       if (response.status === 201) {
         // Redirect to welcome page
-        window.location.href = "/";
+        window.location.href = "/login";
       }
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -83,6 +82,10 @@ function Register() {
   };
 
   const goToLogin = () => {
+    router.push("/login");
+  };
+
+  const goHome = () => {
     router.push("/");
   };
 
@@ -180,6 +183,7 @@ function Register() {
               src={logo}
               alt="logo"
               className="h-[60px] w-[170px] cursor-pointer mb-14 md:mb-5"
+              onClick={goHome}
             />
             <Image src={contactIMG} alt="contact image" />
           </div>

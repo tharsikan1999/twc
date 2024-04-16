@@ -123,7 +123,7 @@ function AddContact() {
         gender: "",
       });
 
-      router.push("/pages/dashboard");
+      router.push("/contacts");
     } catch (error) {
       console.error("Error adding contact:", error);
       // Handle the error appropriately, e.g. display an error message

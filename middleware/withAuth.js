@@ -9,7 +9,7 @@ const withAuth = (WrappedComponent) => {
       const token = localStorage.getItem("jwt");
       if (!token) {
         // Redirect to login page if JWT is not present
-        router.push("/");
+        router.push("/login");
       }
     }, []);
 

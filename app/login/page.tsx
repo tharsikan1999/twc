@@ -41,7 +41,7 @@ function Login() {
         localStorage.setItem("jwt", data.token);
 
         // Redirect the user to the welcome page
-        router.push("/pages/welcome");
+        router.push("/contacts/new");
       } else {
         setError(data.error || "An error occurred during login.");
       }
@@ -49,6 +49,10 @@ function Login() {
       console.error(err);
       setError("Failed to authenticate user.");
     }
+  };
+
+  const goHome = () => {
+    router.push("/");
   };
 
   return (
@@ -105,7 +109,7 @@ function Login() {
             </div>
 
             <div className="flex justify-start mt-6 md:mt-0">
-              <Link href="/pages/register">
+              <Link href="/register">
                 <div className="h-[40px] text-white ml-4 flex items-center">
                   <p className="text-[20px] md:text-[25px]">
                     or{" "}
@@ -133,6 +137,7 @@ function Login() {
               src={logo}
               alt="logo"
               className="h-[60px] w-[170px] cursor-pointer mb-14 md:mb-5"
+              onClick={goHome}
             />
             <Image src={contactIMG} alt="contact image" />
           </div>

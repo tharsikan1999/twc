@@ -1,27 +1,26 @@
 "use client";
 
-import withAuth from "../../../middleware/withAuth";
-
-import logo from "../../assets/img/Logo-white.png";
+import withAuth from "../../middleware/withAuth";
+import logo from "../assets/img/Logo-white.png";
 import Image from "next/image";
-import contactIMG from "../../assets/img/contacts portal white.png";
-import logoutIMG from "../../assets/img/bx_log-out-circle.png";
-import Man from "../../assets/img/man.png";
-import Girl from "../../assets/img/girl.png";
+import contactIMG from "../assets/img/contacts portal white.png";
+import logoutIMG from "../assets/img/bx_log-out-circle.png";
+import Man from "../assets/img/man.png";
+import Girl from "../assets/img/girl.png";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ConfirmationDeleteDialog from "../../components/ConfirmationDeleteDialog";
-import ConfirmationDelete from "../../components/ConfirmationDelete";
+import ConfirmationDeleteDialog from "../components/ConfirmationDeleteDialog";
+import ConfirmationDelete from "../components/ConfirmationDelete";
 import ConfirmationSave from "@/app/components/ConfirmationSave";
 import { useRouter } from "next/navigation";
 import { FiRefreshCw } from "react-icons/fi";
 import { headers } from "next/headers";
-import Ellipse01 from "../../assets/img/Ellipse 1.png";
-import RightImage from "../../assets/img/Right_back.png";
-import LeftImage from "../../assets/img/Left_back.png";
+import Ellipse01 from "../assets/img/Ellipse 1.png";
+import RightImage from "../assets/img/Right_back.png";
+import LeftImage from "../assets/img/Left_back.png";
 
 function Table() {
   const router = useRouter();
@@ -218,7 +217,7 @@ function Table() {
               <h1 className="text-[30px] md:text-[50px] my-10 font-bold text-white text-left">
                 Contacts
               </h1>
-              <Link href="/pages/form">
+              <Link href="/contacts/new">
                 <button
                   type="button"
                   className="text-white leading-4 bg-customGreen border-2 focus:outline-none focus:ring-gray-300 border-white w-[150px] sm:w-[255px] h-[38px] md:h-[48px] rounded-full text-[14px] md:text-[25px] sm:text-[20px] font-normal"
