@@ -91,21 +91,16 @@ function Register() {
       className="flex w-full items-center justify-between flex-col-reverse sm:flex-row sm:min-h-screen"
       style={{ fontFamily: "FuturaMediumBT" }}
     >
-      <div className="w-full h-screen relative flex">
-        <Image
-          src={Bg}
-          alt=""
-          className="w-1/2 h-full absolute object-cover z-10 right-0 "
-        />
+      <div className="w-full h-screen relative hidden lg:flex">
         <Image
           src={Ellipse}
           alt=""
-          className="w-3/5 h-screen absolute  z-20 left-0"
+          className="w-3/5 h-screen absolute  z-20 left-0 "
         />
       </div>
 
       {/* Registration form */}
-      <div className="w-full flex items-center absolute left-0 z-50 justify-center flex-col py-16 md:py-0 px-4 sm:min-h-screen sm:px-5 lg:w-1/2">
+      <div className="w-full flex items-center lg:absolute left-0 z-50 bg-customGreen justify-center flex-col py-16 md:py-0 px-4 sm:min-h-screen sm:px-5 lg:w-1/2">
         <div className="flex flex-col justify-evenly items-center w-full md:items-start md:w-auto">
           {/* Form Title */}
           <h1 className="sm:text-[50px] text-[35px] font-bold text-white md:text-left  text-center">
@@ -178,8 +173,8 @@ function Register() {
       </div>
 
       {/* Logo and contact images */}
-      <div className="w-full py-36 md:py-0 truncate flex absolute right-0 justify-center items bg-back sm:min-h-screen pl-10 lg:pl-0 lg:w-1/2">
-        <div className="w-full flex flex-col lg:pl-10 justify-center items-center border-2 border-red-600 ">
+      <div className="w-full py-36 md:py-0 truncate flex lg:absolute right-0 justify-center bg-back md:pr-5 lg:pr-0 items sm:min-h-screen pl-10 lg:pl-0 lg:w-1/2">
+        <div className="w-full flex flex-col lg:pl-10 justify-center items-center  ">
           <div>
             <Image
               src={logo}

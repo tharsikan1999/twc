@@ -6,6 +6,7 @@ import logo from "../assets/img/logo.png";
 import contactIMG from "../assets/img/contacts portal.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Ellipse from "../assets/img/auth-Ellipse.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -55,8 +56,16 @@ function Login() {
       className="flex w-full items-center  justify-between flex-col-reverse sm:flex-row sm:min-h-screen"
       style={{ fontFamily: "FuturaMediumBT" }}
     >
-      <div className="w-full bg-customGreen flex items-center justify-center flex-col py-16 md:py-0 px-4 sm:min-h-screen sm:px-5 lg:w-1/2">
-        <div className="flex flex-col justify-evenly items-center w-full md:items-start md:w-auto">
+      <div className="w-full h-screen relative hidden lg:flex">
+        <Image
+          src={Ellipse}
+          alt=""
+          className="w-3/5 h-screen absolute  z-20 left-0 "
+        />
+      </div>
+
+      <div className="w-full bg-customGreen flex items-center lg:absolute left-0 z-50 justify-center flex-col py-16 md:py-0 px-4 sm:min-h-screen sm:px-5 lg:w-1/2">
+        <div className="flex flex-col justify-evenly items-center w-full lg:items-start md:w-auto">
           <div className="w-[293px]">
             <h1 className="text-[50px] font-bold text-white">Hi there,</h1>
             <span className="text-[35px] font-normal text-white">
@@ -110,7 +119,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <div className="w-full py-36 md:py-0 truncate flex justify-center relative items bg-back sm:min-h-screen sm:px-5 lg:w-1/2">
+      <div className="w-full py-36 md:py-0  lg:absolute right-0  truncate flex justify-center relative items bg-back sm:min-h-screen sm:px-5 lg:w-1/2">
         <div
           className="h-screen w-52 absolute hidden lg:block bg-customGreen"
           style={{
