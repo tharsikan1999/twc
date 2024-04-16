@@ -159,7 +159,7 @@ function Welcome() {
           <Image src={RightImage} alt="" className="" />
         </div>
         <div className="absolute top-0 z-20 w-full min-h-screen flex justify-center">
-          <div className="my-5 lg:w-3/4 mt-[72px]  ">
+          <div className="my-5 lg:w-3/4 w-full mt-[72px]  ">
             <div className="w-full flex flex-col items-center lg:items-start">
               <div>
                 <Image

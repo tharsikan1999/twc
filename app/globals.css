@@ -3,15 +3,6 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "FuturaLightBT";
-  src: url("./assets/fonts/futura_light_bt.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: "FuturaMediumBT";
-  src: url("./assets/fonts/futura_medium_bt.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+  src: url("./assets/fonts/FuturaMediumBT.ttf") format("truetype");
 }

@@ -97,10 +97,10 @@ function Login() {
             <div className="flex justify-center md:justify-start ">
               <button
                 type="submit"
-                className="text-white bg-customGreen border-2 focus:outline-none focus:ring-gray-300 w-[131px] px-3  h-[48px] md:text-[25px] text-[23px] border-1 border-white rounded-[50px]"
+                className="text-white bg-customGreen border-2 focus:outline-none focus:ring-gray-300 px-10 h-[48px] md:text-[25px] text-[23px] border-1 border-white rounded-[50px]"
                 onClick={handleLogin}
               >
-                Login
+                login
               </button>
             </div>
 
