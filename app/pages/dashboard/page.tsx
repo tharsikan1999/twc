@@ -159,7 +159,7 @@ function Table() {
     <main className="bg-customGreen w-full min-h-screen flex flex-col lg:items-center md:relative px-5 xl:px-0 md:pb-10">
       <div className="lg:w-3/4 min-h-screen lg:pt-[72px] lg:mb-28">
         {/* Header Section */}
-        <div className="w-full flex flex-col items-center lg:items-start">
+        <div className="w-full flex flex-col items-center lg:items-start mt-[72px]">
           <div>
             <Image
               src={logo}
@@ -180,14 +180,14 @@ function Table() {
         </div>
 
         {/* Contacts Header and Add Button */}
-        <div className="flex justify-between items-center lg:mt-14 px-5">
-          <h1 className="text-[30px] md:text-[50px] my-10 font-bold text-white text-center lg:text-left">
+        <div className="flex justify-between items-center lg:mt-14 sm:px-5">
+          <h1 className="text-[30px] md:text-[50px] my-10 font-bold text-white text-left">
             Contacts
           </h1>
           <Link href="/pages/form">
             <button
               type="button"
-              className="text-white leading-4 bg-customGreen border-2 focus:outline-none focus:ring-gray-300 border-white w-[170px] md:w-[255px] h-[38px] md:h/[48px] rounded-full text-[14px] md:text-[25px] sm:text-[16px] font-normal"
+              className="text-white leading-4 bg-customGreen border-2 focus:outline-none focus:ring-gray-300 border-white w-[150px] sm:w-[255px] h-[38px] md:h-[48px] rounded-full text-[14px] md:text-[25px] sm:text-[20px] font-normal"
             >
               Add New Contact
             </button>
@@ -348,15 +348,21 @@ function Table() {
         </div>
 
         {/* Logout Section */}
-        <div
-          className="flex space-x-3 items-center justify-center cursor-pointer mt-14 absolute left-[35%] sm:left-[40%] md:left-[45%] bottom-5 lg:justify-end lg:right-14 md:bottom-5 lg:bottom-10"
-          onClick={handleLogout}
-        >
-          <Image src={logoutIMG} alt="Logout" height={24} width={24} />
-          <p className="underline underline-offset-4 text-white font-normal text-[20px]">
-            Logout
-          </p>
-        </div>
+        <Link href="/">
+          <div
+            className="flex space-x-3 items-center justify-center cursor-pointer lg:mt-14 w-full lg:w-auto absolute  lg:right-14 bottom-10 lg:bottom-14"
+            onClick={handleLogout}
+          >
+            <Image
+              src={logoutIMG}
+              alt="logout IMG"
+              className="md:w-[43px] md:h-[43px] h-8 w-8"
+            />
+            <p className="underline underline-offset-4 text-white font-normal text-[20px] md:text-[25px]">
+              Logout
+            </p>
+          </div>
+        </Link>
       </div>
     </main>
   );

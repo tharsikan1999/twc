@@ -1,16 +1,132 @@
 "use client";
 
 import withAuth from "../../../middleware/withAuth";
-
 import logo from "../../assets/img/Logo-white.png";
 import Image from "next/image";
 import contactIMG from "../../assets/img/contacts portal white.png";
 import logoutIMG from "../../assets/img/bx_log-out-circle.png";
 import Link from "next/link";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 function Welcome() {
   const router = useRouter();
+  interface ContactData {
+    name: string;
+    email: string;
+    phone: string;
+    gender: string;
+  }
+  // State variable to manage form data
+  const [contactData, setContactData] = useState<ContactData>({
+    name: "",
+    email: "",
+    phone: "",
+    gender: "",
+  });
+
+  // State to manage validation errors
+  const [errors, setErrors] = useState({});
+
+  // Handle input changes
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setContactData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Function to validate the form data
+  const validateForm = () => {
+    // Initialize errors object
+    const errors: Partial<ContactData> = {};
+    let isValid = true;
+
+    // Check name
+    if (!contactData.name) {
+      errors.name = "Name is required";
+      isValid = false;
+    }
+
+    // Check email
+    if (!contactData.email) {
+      errors.email = "Email is required";
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(contactData.email)) {
+      errors.email = "Email is invalid";
+      isValid = false;
+    }
+
+    // Check phone
+    if (!contactData.phone) {
+      errors.phone = "Phone number is required";
+      isValid = false;
+    }
+
+    // Check gender
+    if (!contactData.gender) {
+      errors.gender = "Gender is required";
+      isValid = false;
+    }
+
+    setErrors(errors);
+
+    if (!isValid) {
+      // Construct an error message string from the errors object
+      const errorMessage = Object.values(errors).join("\n");
+
+      // Display the alert with the error message
+      window.alert(errorMessage);
+
+      // Stop form submission
+      return;
+    }
+    return isValid;
+  };
+
+  // Handle form submission
+  const handleAddContact = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    try {
+      // Retrieve JWT token from local storage
+      const token = localStorage.getItem("jwt");
+
+      if (!token) {
+        throw new Error("JWT token not found in local storage");
+      }
+
+      // Make a POST request to the server with the form data and headers
+      await axios.post("/api/add", contactData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // Perform any additional actions after the request, e.g. clearing the form
+      setContactData({
+        name: "",
+        email: "",
+        phone: "",
+        gender: "",
+      });
+
+      router.push("/pages/dashboard");
+    } catch (error) {
+      console.error("Error adding contact:", error);
+      // Handle the error appropriately, e.g. display an error message
+    }
+  };
+
   const GoToHome = () => {
     router.push("/");
   };
@@ -23,10 +139,10 @@ function Welcome() {
   };
 
   return (
-    <main className=" bg-customGreen w-full min-h-screen flex flex-col  lg:items-center lg:relative">
-      <div className=" mt-10 lg:w-3/4 h-screen relative lg:pt-[72px] ">
-        <div className=" w-full flex flex-col items-center lg:items-start">
-          <div className="">
+    <main className="bg-customGreen w-full min-h-screen flex flex-col lg:items-center lg:relative">
+      <div className="my-5 lg:w-3/4 mt-[72px]">
+        <div className="w-full flex flex-col items-center lg:items-start">
+          <div>
             <Image
               src={logo}
               alt="logo"
@@ -61,12 +177,16 @@ function Welcome() {
         </form>
         <Link href="/">
           <div
-            className=" flex space-x-3 items-center justify-center cursor-pointer mt-14 absolute left-[35%] sm:left-[40%] md:left-[45%] bottom-14 lg:justify-end lg:right-14 lg:bottom-14"
+            className="flex space-x-3 items-center justify-center cursor-pointer lg:mt-14 w-full lg:w-auto absolute  lg:right-14 bottom-10 lg:bottom-14"
             onClick={handleLogout}
           >
-            <Image src={logoutIMG} alt="logout IMG" />
-            <p className=" underline underline-offset-4 text-white font-normal text-[20px]">
-              logout
+            <Image
+              src={logoutIMG}
+              alt="logout IMG"
+              className="md:w-[43px] md:h-[43px] h-8 w-8"
+            />
+            <p className="underline underline-offset-4 text-white font-normal text-[20px] md:text-[25px]">
+              Logout
             </p>
           </div>
         </Link>

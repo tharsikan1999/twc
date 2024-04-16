@@ -14,7 +14,7 @@ function Login() {
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent the form from submitting normally
+    e.preventDefault();
 
     // Perform form validation if necessary
     if (!email || !password) {
@@ -49,7 +49,7 @@ function Login() {
   };
 
   return (
-    <main className="flex w-full items-center justify-between flex-col-reverse sm:flex-row sm:min-h-screen">
+    <main className="flex w-full items-center  justify-between flex-col-reverse sm:flex-row sm:min-h-screen">
       <div className="w-full bg-customGreen flex items-center justify-center flex-col py-16 md:py-0 px-4 sm:min-h-screen sm:px-5 lg:w-1/2">
         <div className="flex flex-col justify-evenly items-center w-full md:items-start md:w-auto">
           <div className="w-[263px]">
@@ -63,7 +63,7 @@ function Login() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-white rounded-3xl mb-10 focus:ring-blue-500 focus:border-blue-500 block w-full h-[55px] pl-[41px] dark:focus:ring-blue-500 dark:focus:border-blue-500 text-customGreen placeholder-customGreen md:w-[477px]"
+              className="bg-white rounded-3xl mb-10 focus:ring-blue-500 focus:border-blue-500 block w-full h-[55px] pl-[41px] dark:focus:ring-blue-500 dark:focus:border-blue-500 text-customGreen placeholder-customGreen md:w-[477px] lg:text-[25px] text-[20px]  font-normal"
               placeholder="e-mail"
               required
             />
@@ -71,24 +71,26 @@ function Login() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-white rounded-3xl mb-10 focus:ring-blue-500 focus:border-blue-500 block w-full h-[55px] pl-[41px] dark:focus:ring-blue-500 dark:focus:border-blue-500 text-customGreen placeholder-customGreen md:w-[477px]"
+              className="bg-white rounded-3xl mb-10 focus:ring-blue-500 focus:border-blue-500 block w-full h-[55px] pl-[41px] dark:focus:ring-blue-500 dark:focus:border-blue-500 text-customGreen placeholder-customGreen md:w-[477px] lg:text-[25px] text-[20px] font-normal"
               placeholder="password"
               required
             />
             {/* Error message */}
             {error && <div className="text-red-500 mb-4">{error}</div>}
-            <button
-              type="submit"
-              className="text-white bg-customGreen border-2 focus:outline-none focus:ring-gray-300 border-white w-[131px] sm:w-[90px] h-[38px] md:h-[48px] rounded-full text-[20px] md:text-[25px] sm:text-[16px] font-normal"
-            >
-              Login
-            </button>
+            <div className="flex justify-center md:justify-start">
+              <button
+                type="submit"
+                className="text-white bg-customGreen border-2 focus:outline-none focus:ring-gray-300 w-[131px] px-3  h-[48px] md:text-[25px] text-[23px] border-1 border-white rounded-[50px]"
+              >
+                Login
+              </button>
+            </div>
           </form>
 
           <div className="flex justify-start mt-10">
             <Link href="/pages/register">
               <div className="h-[40px] text-white ml-4 flex items-center">
-                <p className="text-[15px] md:text-[25px]">
+                <p className="text-[20px] md:text-[25px]">
                   or{" "}
                   <span className="underline underline-offset-4 cursor-pointer">
                     Click here to Register

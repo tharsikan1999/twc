@@ -242,8 +242,12 @@ function AddContact() {
             className="flex space-x-3 items-center justify-center cursor-pointer mt-14 lg:absolute lg:right-14 lg:bottom-14"
             onClick={handleLogout}
           >
-            <Image src={logoutIMG} alt="logout IMG" className="w-6 h-6" />
-            <p className="underline underline-offset-4 text-white font-normal text-[20px]">
+            <Image
+              src={logoutIMG}
+              alt="logout IMG"
+              className="md:w-[43px] md:h-[43px] h-8 w-8"
+            />
+            <p className="underline underline-offset-4 text-white font-normal text-[20px] md:text-[25px]">
               Logout
             </p>
           </div>

@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Futura Md BT Medium";
+  src: url("https://db.onlinewebfonts.com/t/e55e9079ee863276569c8a68d776ef04.eot");
+  src: url("https://db.onlinewebfonts.com/t/e55e9079ee863276569c8a68d776ef04.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/e55e9079ee863276569c8a68d776ef04.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/e55e9079ee863276569c8a68d776ef04.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/e55e9079ee863276569c8a68d776ef04.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/e55e9079ee863276569c8a68d776ef04.svg#Futura Md BT Medium")
+      format("svg");
+}
+
+body {
+  font-family: "Futura Md BT Medium", sans-serif;
+}
